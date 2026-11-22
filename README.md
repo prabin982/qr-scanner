@@ -75,6 +75,8 @@ The recommended setup is to create the database yourself, then connect a Render 
 2. Set **Root Directory** to `backend`, **Build Command** to `npm ci`, **Start Command** to `npm start`, and **Health Check Path** to `/health`. Choose the same region as the database.
 3. Add these environment variables in the Render service's **Environment** page:
 
+   The placeholder-only [`backend/.env.render.example`](backend/.env.render.example) can help prepare the values. Replace every placeholder with your own values; never commit real credentials.
+
    | Key | Value to paste |
    |---|---|
    | `DATABASE_URL` | The database's **Internal Database URL** copied in step A |
