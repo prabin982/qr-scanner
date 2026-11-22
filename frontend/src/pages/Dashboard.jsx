@@ -27,10 +27,10 @@ export default function Dashboard() {
 
   return (
     <div className="space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-3">
+      <div className="page-header">
         <div>
-          <h1 className="text-2xl font-semibold">Dashboard</h1>
-          <p className="text-sm text-slate-500">Live check-in counts, refreshed every 5 seconds.</p>
+          <h1 className="page-title">Dashboard</h1>
+          <p className="page-description">Live check-in counts, refreshed every 5 seconds.</p>
         </div>
         <button className="btn-secondary" onClick={exportSummary}>
           <Download size={16} /> Export summary CSV
@@ -50,7 +50,7 @@ export default function Dashboard() {
       <div className="grid gap-6 xl:grid-cols-3">
         <div className="card xl:col-span-2">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 p-4">
-            <h2 className="font-semibold">Company-wise statistics</h2>
+            <h2 className="text-sm font-semibold text-slate-900">Company-wise statistics</h2>
             <div className="relative w-full sm:w-64">
               <Search size={16} className="absolute left-3 top-2.5 text-slate-400" />
               <input
@@ -76,7 +76,7 @@ export default function Dashboard() {
                 {filtered.map((c) => (
                   <tr key={c.id} className="hover:bg-slate-50">
                     <td className="td">
-                      <Link to={`/companies/${c.id}`} className="font-medium text-indigo-600 hover:underline">
+                      <Link to={`/companies/${c.id}`} className="font-medium text-blue-700 hover:text-blue-900 hover:underline">
                         {c.company_name}
                       </Link>
                     </td>

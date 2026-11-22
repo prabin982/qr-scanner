@@ -27,13 +27,13 @@ export default function Login() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-slate-100 p-4">
-      <form onSubmit={submit} className="card w-full max-w-sm space-y-4 p-6">
-        <div className="flex flex-col items-center gap-2 pb-2">
-          <div className="rounded-xl bg-indigo-600 p-3 text-white">
-            <QrCode size={28} />
+    <div className="flex min-h-screen items-center justify-center bg-[#f7f8fa] p-4">
+      <form onSubmit={submit} className="card w-full max-w-[400px] space-y-5 p-7 sm:p-8">
+        <div className="flex flex-col items-center gap-2 pb-1">
+          <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+            <QrCode size={25} strokeWidth={1.9} />
           </div>
-          <h1 className="text-xl font-semibold">Invitation Admin</h1>
+          <h1 className="mt-1 text-lg font-semibold tracking-tight text-slate-900">Invitation Admin</h1>
           <p className="text-sm text-slate-500">Sign in to continue</p>
         </div>
         <ErrorBox message={error} />
@@ -54,7 +54,7 @@ export default function Login() {
         <button className="btn-primary w-full" disabled={busy}>
           {busy ? <Spinner className="!text-white" /> : 'Sign in'}
         </button>
-        <p className="text-center text-xs text-slate-400">The first login may take ~30s if the server is waking up.</p>
+        <p className="text-center text-xs leading-5 text-slate-400">The first login may take ~30s if the server is waking up.</p>
       </form>
     </div>
   );

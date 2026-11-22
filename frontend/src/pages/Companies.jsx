@@ -58,12 +58,14 @@ export default function Companies() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold">Companies</h1>
-        <p className="text-sm text-slate-500">Add a company and generate its QR codes. You can add more QR codes to a company later.</p>
+      <div className="page-header">
+        <div>
+          <h1 className="page-title">Companies</h1>
+          <p className="page-description">Manage organizations and the QR invitations assigned to each.</p>
+        </div>
       </div>
 
-      <form onSubmit={create} className="card grid gap-4 p-4 md:grid-cols-[2fr_1fr_1fr_auto] md:items-end">
+      <form onSubmit={create} className="card grid gap-4 p-5 md:grid-cols-[2fr_1fr_1fr_auto] md:items-end">
         <div>
           <label className="mb-1 block text-sm font-medium">Company name</label>
           <input
@@ -137,7 +139,7 @@ export default function Companies() {
                 {(companies || []).map((c) => (
                   <tr key={c.id} className="hover:bg-slate-50">
                     <td className="td font-medium">
-                      <Link to={`/companies/${c.id}`} className="text-indigo-600 hover:underline">
+                      <Link to={`/companies/${c.id}`} className="text-blue-700 hover:text-blue-900 hover:underline">
                         {c.company_name}
                       </Link>
                     </td>

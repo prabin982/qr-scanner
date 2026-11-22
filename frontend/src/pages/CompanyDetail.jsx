@@ -87,25 +87,25 @@ export default function CompanyDetail() {
   return (
     <div className="space-y-6">
       <div>
-        <Link to="/companies" className="mb-2 inline-flex items-center gap-1 text-sm text-slate-500 hover:text-slate-800">
+        <Link to="/companies" className="mb-3 inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-slate-900">
           <ArrowLeft size={16} /> All companies
         </Link>
-        <h1 className="text-2xl font-semibold">{company.company_name}</h1>
-        <p className="text-sm text-slate-500">ID prefix: {company.prefix}</p>
+        <h1 className="page-title">{company.company_name}</h1>
+        <p className="page-description">ID prefix: {company.prefix}</p>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-3">
         <div className="card p-4">
           <div className="text-xs text-slate-500">Allocated</div>
-          <div className="text-2xl font-semibold">{company.allocated}</div>
+          <div className="text-2xl font-semibold tracking-tight tabular-nums text-slate-900">{company.allocated}</div>
         </div>
         <div className="card p-4">
           <div className="text-xs text-slate-500">Scanned</div>
-          <div className="text-2xl font-semibold text-emerald-600">{company.scanned}</div>
+          <div className="text-2xl font-semibold tracking-tight tabular-nums text-emerald-700">{company.scanned}</div>
         </div>
         <div className="card p-4">
           <div className="text-xs text-slate-500">Remaining</div>
-          <div className="text-2xl font-semibold">{company.remaining}</div>
+          <div className="text-2xl font-semibold tracking-tight tabular-nums text-slate-900">{company.remaining}</div>
           <div className="mt-2">
             <ProgressBar value={pct} />
           </div>
@@ -172,7 +172,7 @@ export default function CompanyDetail() {
             <button
               key={v}
               onClick={() => setView(v)}
-              className={`px-3 py-2 capitalize ${view === v ? 'bg-indigo-600 text-white' : 'text-slate-600 hover:bg-slate-50'}`}
+              className={`px-3 py-2 capitalize transition-colors ${view === v ? 'bg-blue-700 text-white' : 'text-slate-600 hover:bg-slate-50'}`}
             >
               {v}
             </button>

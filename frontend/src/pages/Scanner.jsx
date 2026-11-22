@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { Html5Qrcode } from 'html5-qrcode';
+import { Html5Qrcode, Html5QrcodeSupportedFormats } from 'html5-qrcode';
 import { AlertTriangle, Camera, CameraOff, CheckCircle2, Keyboard, RefreshCw, XCircle } from 'lucide-react';
 import { api } from '../api';
 import { StatusBadge } from '../components/ui';
@@ -94,14 +94,17 @@ export default function Scanner() {
     setCamError('');
     try {
       await stop();
-      const scanner = new Html5Qrcode('reader');
+      const scanner = new Html5Qrcode('reader', {
+        formatsToSupport: [Html5QrcodeSupportedFormats.QR_CODE],
+        useBarCodeDetectorIfSupported: true,
+      });
       scannerRef.current = scanner;
       await scanner.start(
         cameraId || { facingMode: 'environment' },
         {
-          fps: 10,
+          fps: 15,
           qrbox: (w, h) => {
-            const size = Math.floor(Math.min(w, h) * 0.75);
+            const size = Math.floor(Math.min(w, h) * 0.7);
             return { width: size, height: size };
           },
         },
@@ -135,9 +138,11 @@ export default function Scanner() {
 
   return (
     <div className="mx-auto max-w-5xl space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold">Entry Scanner</h1>
-        <p className="text-sm text-slate-500">Hold the invitation QR code in front of the camera. Each valid code is checked in once.</p>
+      <div className="page-header">
+        <div>
+          <h1 className="page-title">Entry scanner</h1>
+          <p className="page-description">Hold the invitation QR code in front of the camera. Each valid code is checked in once.</p>
+        </div>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-2">
@@ -201,13 +206,13 @@ export default function Scanner() {
 
         <div className="space-y-4">
           {result ? (
-            <div className={`rounded-xl border-2 p-6 text-center ${style.box}`}>
-              <style.Icon size={64} className="mx-auto" />
-              <div className="mt-3 text-2xl font-bold">{style.title}</div>
+            <div className={`rounded-lg border p-6 text-center ${style.box}`}>
+              <style.Icon size={48} strokeWidth={1.7} className="mx-auto" />
+              <div className="mt-3 text-xl font-semibold tracking-tight">{style.title}</div>
               {result.invitation ? (
                 <div className="mt-4 space-y-1">
                   <div className="text-lg font-semibold">{result.invitation.company_name}</div>
-                  <div className="text-3xl font-bold tracking-wide">{result.invitation.code}</div>
+                  <div className="text-2xl font-semibold tracking-wide">{result.invitation.code}</div>
                   {result.type === 'duplicate' && result.invitation.checked_in_at && (
                     <div className="text-sm">First checked in at {new Date(result.invitation.checked_in_at).toLocaleString()}</div>
                   )}

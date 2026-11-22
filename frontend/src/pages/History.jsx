@@ -16,9 +16,11 @@ export default function History() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-semibold">Scan History</h1>
-        <p className="text-sm text-slate-500">Latest 300 scans, including repeated and invalid attempts.</p>
+      <div className="page-header">
+        <div>
+          <h1 className="page-title">Scan history</h1>
+          <p className="page-description">Latest 300 scans, including repeated and invalid attempts.</p>
+        </div>
       </div>
 
       <div className="flex flex-wrap gap-3">

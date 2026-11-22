@@ -17,30 +17,28 @@ export default function Layout() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col md:flex-row">
-      <aside className="border-b border-slate-200 bg-slate-900 text-slate-200 md:sticky md:top-0 md:h-screen md:w-60 md:shrink-0 md:border-b-0">
-        <div className="flex items-center justify-between px-4 py-3 md:block md:px-5 md:py-6">
-          <div className="flex items-center gap-2 text-white">
-            <QrCode size={24} className="text-indigo-400" />
-            <span className="text-lg font-semibold">Invitations</span>
+    <div className="flex min-h-screen flex-col bg-[#f7f8fa] md:flex-row">
+      <aside className="app-sidebar border-b border-slate-200 bg-white md:sticky md:top-0 md:h-screen md:w-60 md:shrink-0 md:border-b-0 md:border-r">
+        <div className="flex items-center justify-between px-4 py-3 md:px-5 md:py-6">
+          <div className="flex items-center gap-3 text-slate-900">
+            <span className="flex h-9 w-9 items-center justify-center rounded-md bg-blue-50 text-blue-700">
+              <QrCode size={20} strokeWidth={2} />
+            </span>
+            <span className="text-[15px] font-semibold tracking-tight">Invitations</span>
           </div>
-          <button onClick={logout} className="flex items-center gap-1 text-sm text-slate-400 hover:text-white md:hidden">
+          <button onClick={logout} className="flex items-center gap-1.5 rounded-md px-2 py-1.5 text-sm text-slate-500 transition hover:bg-slate-100 hover:text-slate-900 md:hidden">
             <LogOut size={16} /> Logout
           </button>
         </div>
-        <nav className="flex gap-1 overflow-x-auto px-2 pb-2 md:flex-col md:px-3 md:pb-0">
+        <nav aria-label="Main navigation" className="flex gap-1 overflow-x-auto px-3 pb-3 md:flex-col md:px-3 md:pb-0">
           {links.map(({ to, label, icon: Icon, end }) => (
             <NavLink
               key={to}
               to={to}
               end={end}
-              className={({ isActive }) =>
-                `flex items-center gap-3 whitespace-nowrap rounded-lg px-3 py-2 text-sm font-medium transition ${
-                  isActive ? 'bg-indigo-600 text-white' : 'text-slate-300 hover:bg-slate-800'
-                }`
-              }
+              className={({ isActive }) => `nav-link whitespace-nowrap ${isActive ? 'nav-link-active' : ''}`}
             >
-              <Icon size={18} />
+              <Icon size={17} strokeWidth={1.9} />
               {label}
             </NavLink>
           ))}
@@ -48,15 +46,17 @@ export default function Layout() {
         <div className="hidden px-3 md:absolute md:bottom-4 md:block md:w-full">
           <button
             onClick={logout}
-            className="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm text-slate-400 hover:bg-slate-800 hover:text-white"
+            className="flex w-full items-center gap-3 rounded-md px-3 py-2.5 text-sm font-medium text-slate-500 transition-colors hover:bg-slate-100 hover:text-slate-900"
           >
-            <LogOut size={18} /> Logout
+            <LogOut size={17} /> Logout
           </button>
         </div>
       </aside>
 
-      <main className="min-w-0 flex-1 p-4 md:p-8">
-        <Outlet />
+      <main className="app-main min-w-0 flex-1 px-4 py-6 sm:px-6 md:px-8 md:py-9">
+        <div className="mx-auto w-full max-w-[1440px]">
+          <Outlet />
+        </div>
       </main>
     </div>
   );
